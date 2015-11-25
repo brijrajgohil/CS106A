@@ -10,16 +10,15 @@ import acm.program.*;
 import acm.graphics.*;
 
 public class BlankClass extends ConsoleProgram {
+	private static final int NVALUES = 10;
 	public void run() {
-		println("The program converts integers to Card Ranks");
-		int n = readInt("Enter the integer between 1 and 13");
-		switch(n) {
-		case 1: println("Ace"); break;
-		case 11: println("Jack"); break;
-		case 12: println("Queen"); break;
-		case 13: println("King"); break;
-		default: println(n); break;
+		println("The program adds " + NVALUES + "integers.");
+		int total = 0;
+		for(int i = 0; i < NVALUES; i++) {
+			int value = readInt("?");
+			total += value;
 		}
+		println("Total is " + total);
 	}
 }
 
