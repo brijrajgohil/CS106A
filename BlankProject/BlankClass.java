@@ -10,15 +10,16 @@ import acm.program.*;
 import acm.graphics.*;
 
 public class BlankClass extends ConsoleProgram {
-	private static final int NVALUES = 10;
 	public void run() {
-		println("The program adds " + NVALUES + "integers.");
-		int total = 0;
-		for(int i = 0; i < NVALUES; i++) {
-			int value = readInt("?");
-			total += value;
+		println("The program adds sums the digits in a number");
+		int n = readInt("Enter number");
+		int dsum = 0;
+		while(n > 0) {
+			dsum += (n % 10);
+			n /= 10;
 		}
-		println("Total is " + total);
+		println("dsum = " + dsum);
+		
 	}
 }
 
