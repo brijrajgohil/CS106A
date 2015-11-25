@@ -10,21 +10,18 @@ import acm.program.*;
 import acm.graphics.*;
 
 public class BlankClass extends GraphicsProgram {
-	private static final int NROWS = 8;
-	private static final int NCOLUMNS = 8;
-	
 	public void run() {
-		int sqSize = getHeight() / NROWS;
-		for(int i = 0; i < NROWS; i++) {
-			for(int j = 0; j < NCOLUMNS; j++) {
-				int x = j * sqSize;
-				int y = i * sqSize;
-				GRect sq = new GRect(x, y, sqSize, sqSize);
-				sq.setFilled(((i + j) %2 != 0));
-				add(sq);
-			}
+		println("This program classifies an integer by its sign");
+		int n = readInt("Enter n : ");
+		if(n > 0) {
+			println("Positive");
 		}
-		
+		else if(n == 0) {
+			println("Zero");
+		}
+		else {
+			println("Negative");
+		}
 	}
 }
 
