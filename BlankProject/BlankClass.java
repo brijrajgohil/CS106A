@@ -11,15 +11,10 @@ import acm.graphics.*;
 
 public class BlankClass extends ConsoleProgram {
 	public void run() {
-		println("The program adds sums the digits in a number");
-		int n = readInt("Enter number");
-		int dsum = 0;
-		while(n > 0) {
-			dsum += (n % 10);
-			n /= 10;
+		for(int i = 10; i >= 0; i--) {
+			println(i);
 		}
-		println("dsum = " + dsum);
-		
+		println("LiftOff");
 	}
 }
 
