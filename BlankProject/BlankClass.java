@@ -9,18 +9,16 @@
 import acm.program.*;
 import acm.graphics.*;
 
-public class BlankClass extends GraphicsProgram {
+public class BlankClass extends ConsoleProgram {
 	public void run() {
-		println("This program classifies an integer by its sign");
-		int n = readInt("Enter n : ");
-		if(n > 0) {
-			println("Positive");
-		}
-		else if(n == 0) {
-			println("Zero");
-		}
-		else {
-			println("Negative");
+		println("The program converts integers to Card Ranks");
+		int n = readInt("Enter the integer between 1 and 13");
+		switch(n) {
+		case 1: println("Ace"); break;
+		case 11: println("Jack"); break;
+		case 12: println("Queen"); break;
+		case 13: println("King"); break;
+		default: println(n); break;
 		}
 	}
 }
