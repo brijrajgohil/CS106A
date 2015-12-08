@@ -10,15 +10,19 @@ import acm.program.*;
 import acm.graphics.*;
 
 public class BlankClass extends ConsoleProgram {
+	private static final int SENTINAL = 0;
 	public void run() {
-		for(int i = 1; i <= 100; i++) {
-			if(i%6 == 0 || i%7 == 0) {
-				if(i%6 == 0 && i%7 == 0) {
-					continue;
-				}
-				println(i + " ");
-			}
+		println("Enter the integers ");
+		int i = 0;
+		int total = 0;
+		while(true) {
+			int val = readInt("? ");
+			if(val == SENTINAL) break;
+			total += val;
+			i++;
 		}
+		println("Avg = " + total/i);
+		
 	}
 }
 
