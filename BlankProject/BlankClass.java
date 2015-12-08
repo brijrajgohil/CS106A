@@ -13,16 +13,14 @@ public class BlankClass extends ConsoleProgram {
 	public void run() {
 		int a = 0;
 		int b = 1;
-		int i = 0;
 		int c = 0;
 		println(a + " ");
 		println(b + " ");
-		while(i != 15) {
+		while(c < 10000) {
 			c = a + b;
 			a = b;
 			b = c;
 			println(c + " ");
-			i++;
 		}
 		
 	}
