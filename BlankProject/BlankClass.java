@@ -11,19 +11,11 @@ import acm.graphics.*;
 
 public class BlankClass extends ConsoleProgram {
 	public void run() {
-		int i = 1;
-		int num = readInt("Enter the number?");
-		int temp = 0;
-		int total = 0;
-		while(temp != num) {
-			if(i%2 != 0) {
+		for(int i = 1; i <= 100; i++) {
+			if(i%6 == 0 || i%7 == 0) {
 				println(i + " ");
-				total += i;
-				temp++;
 			}
-			i++;
 		}
-		println("Total = " + total);
 	}
 }
 
