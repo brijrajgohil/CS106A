@@ -11,7 +11,12 @@ import acm.graphics.*;
 
 public class BlankClass extends GraphicsProgram {
 	public void run() {
-		GRect g = new GRect(getHeight()/2, getWidth()/2, 5, 5);
+		GLabel label = new GLabel("CS106A rocks my socks");
+		label.setFont("SansSerif-28");
+		double x = (getWidth() - label.getWidth()) /2;
+		double y = (getHeight() - label.getHeight()) / 2;
+		label.setLocation(x, y);
+		add(label);
 	}
 }
 
