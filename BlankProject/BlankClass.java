@@ -10,23 +10,8 @@ import acm.program.*;
 import acm.graphics.*;
 
 public class BlankClass extends GraphicsProgram {
-	private static final int NROWS = 8;
-	private static final int NCOLUMS = 8;
 	public void run() {
-		int sqSize = getWidth() / NROWS;
-		for(int i = 0; i < NROWS; i++) {
-			for(int j = 0; j < NCOLUMS; j++) {
-				int x = i * sqSize;
-				int y = j * sqSize;
-				GRect sq = new GRect(x, y, sqSize, sqSize);
-				add(sq);
-				if((i + j) % 2 != 0) {
-					GOval go = new GOval(x, y, sqSize-2, sqSize-2);
-					add(go);
-				}
-			}
-		}
-		
+		GRect g = new GRect(getHeight()/2, getWidth()/2, 5, 5);
 	}
 }
 
