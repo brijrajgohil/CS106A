@@ -10,13 +10,18 @@ import acm.program.*;
 import acm.graphics.*;
 
 public class BlankClass extends GraphicsProgram {
+//	private static final int HEAD_WIDTH = 150;
+//	private static final int HEAD_HEIGHT = 250;
+//	private static final int EYE_RADIUS = 10;
+//	private static final int MOUTH_HEIGHT = 20;
+	private static final int SQUARE_SIZE = 100;
+	
 	public void run() {
-		GLabel label = new GLabel("CS106A rocks my socks");
-		label.setFont("SansSerif-28");
-		double x = (getWidth() - label.getWidth()) /2;
-		double y = (getHeight() - label.getHeight()) / 2;
-		label.setLocation(x, y);
-		add(label);
+		GRect square = new GRect(SQUARE_SIZE, SQUARE_SIZE);
+		square.setFilled(true);
+		System.out.println(getWidth());
+		System.out.println(getHeight());
+		add(square, getWidth()/2 - SQUARE_SIZE, getHeight()/2 - SQUARE_SIZE);
 	}
 }
 
