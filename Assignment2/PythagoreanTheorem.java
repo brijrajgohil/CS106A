@@ -1,6 +1,6 @@
 /*
  * File: PythagoreanTheorem.java
- * Name: 
+ * Name: Brijrajsinh Gohil
  * Section Leader: 
  * -----------------------------
  * This file is the starter file for the PythagoreanTheorem problem.
