@@ -10,9 +10,11 @@ import acm.program.*;
 import java.awt.*;
 public class BlankClass extends ConsoleProgram {
 	public void run() {
-		raiseIntPower(2, 10);
+		for(int i = -4; i <= 4; i++) {
+			raiseToRealPower(Math.PI, i);
+		}
 	}
-	private void raiseIntPower(int n, int k) {
+	private void raiseToRealPower(double n, int k) {
 		for(int i = 0; i <= k; i++) {
 			println(Math.pow(n, i));
 		}
