@@ -12,19 +12,21 @@ import java.awt.*;
 public class BlankClass extends ConsoleProgram {
 	
 	private static final int LOWER_LIMIT = 0;
-	private static final int UPPER_LIMIT = 100;
-	private static final int STEP_SIZE = 5;
+	private static final int UPPER_LIMIT = 10;
+	
 	
 	public void run() {
-		println("Celsius to Fahrenheit table.");
-		for(int c = LOWER_LIMIT; c <= UPPER_LIMIT; c += STEP_SIZE) {
-			int f = (int) celsiusToFahrenheit(c);
-			println(c + "C = " + f + "F");
+		for(int c = LOWER_LIMIT; c <= UPPER_LIMIT; c++) {
+			println(c + "! = " + factorial(c));
 		}
 	}
 	
-	private double celsiusToFahrenheit(double c) {
-		return 9.0/5.0 * c +32;
+	private int factorial(int c) {
+		int result = 1;
+		for(int i = 1; i <= c; i++) {
+			result *= i;
+		}
+		return result;
 	}
 }
 
