@@ -9,16 +9,22 @@
 import acm.graphics.*;
 import acm.program.*;
 import java.awt.*;
-public class BlankClass extends GraphicsProgram {
-/* Parameters for the drawing */
+public class BlankClass extends ConsoleProgram {
+	
+	private static final int LOWER_LIMIT = 0;
+	private static final int UPPER_LIMIT = 100;
+	private static final int STEP_SIZE = 5;
 	
 	public void run() {
-		GLabel label = new GLabel("Hello, World");
-		label.setFont("London-36");
-		label.setColor(Color.MAGENTA);
-		double x = (getWidth() - label.getWidth()) / 2;
-		double y = (getHeight() - label.getAscent()) / 2;
-		add(label, x, y);
+		println("Celsius to Fahrenheit table.");
+		for(int c = LOWER_LIMIT; c <= UPPER_LIMIT; c += STEP_SIZE) {
+			int f = (int) celsiusToFahrenheit(c);
+			println(c + "C = " + f + "F");
+		}
+	}
+	
+	private double celsiusToFahrenheit(double c) {
+		return 9.0/5.0 * c +32;
 	}
 }
 
