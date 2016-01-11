@@ -6,24 +6,20 @@
  * Then you can extend GraphicsProgram, ConsoleProgram, or DialogProgram as you like.
  */
 
-import acm.graphics.*;
 import acm.program.*;
 import java.awt.*;
 public class BlankClass extends ConsoleProgram {
-	
-	private static final int LOWER_LIMIT = 0;
-	private static final int UPPER_LIMIT = 10;
-	
-	
 	public void run() {
-		for(int c = LOWER_LIMIT; c <= UPPER_LIMIT; c++) {
-			println(c + "! = " + factorial(c));
-		}
+		int n = readInt("Enter number of objects ");
+		int k = readInt("Enter number to be chosen ");
+		println("C(" + n + ", " + k + ") = " + combinations(n, k));
 	}
-	
-	private int factorial(int c) {
+	private int combinations(int n, int k) {
+		return factorial(n) / (factorial(k) * factorial(n - k));
+	}
+	private int factorial(int k) {
 		int result = 1;
-		for(int i = 1; i <= c; i++) {
+		for(int i = 1; i <= k; i++) {
 			result *= i;
 		}
 		return result;
