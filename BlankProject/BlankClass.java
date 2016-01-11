@@ -10,13 +10,12 @@ import acm.program.*;
 import java.awt.*;
 public class BlankClass extends ConsoleProgram {
 	public void run() {
-		int a = readInt("Enter a ");
-		int b = readInt("Enter b ");
-		int c = readInt("Enter c ");
-		int x = (int) (-b + Math.sqrt((b * b) - (4 * a * c)) / (2 * a));
-		println("The solutions are " + x);
-		x = (int) (-b - Math.sqrt((b * b) - (4 * a * c)) / (2 * a));
-		println(x);
+		raiseIntPower(2, 10);
+	}
+	private void raiseIntPower(int n, int k) {
+		for(int i = 0; i <= k; i++) {
+			println(Math.pow(n, i));
+		}
 	}
 }
 
