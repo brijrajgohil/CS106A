@@ -29,9 +29,12 @@ public class BlankClass extends ConsoleProgram {
 				}
 			}
 		}
+		String coinFlip = rgen.nextBoolean(0.0) ? "HEADS" : "TAILS";
+		println(coinFlip);
 	}
 	
 	private int rollTwoDice() {
+		//rgen.setSeed(1);
 		int d1 = rgen.nextInt(1, 6);
 		int d2 = rgen.nextInt(1, 6);
 		int total = d1 + d2;
@@ -39,6 +42,9 @@ public class BlankClass extends ConsoleProgram {
 		return total;
 	}
 	
+	
 	private RandomGenerator rgen = new RandomGenerator();
+	
+	
 }
 
