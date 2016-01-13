@@ -7,17 +7,38 @@
  */
 
 import acm.program.*;
-import java.awt.*;
+import acm.util.*;
+
 public class BlankClass extends ConsoleProgram {
 	public void run() {
-		for(int i = -4; i <= 4; i++) {
-			raiseToRealPower(Math.PI, i);
+		int total = rollTwoDice();
+		if(total == 7 || total == 11) {
+			println("That's a natural. You win");
+		} else if(total == 2 || total == 3 || total == 12) {
+			println("That's craps. You lose.");
+		} else {
+			int point = total;
+			println("Your point is " + point);
+			while(true) {
+				if(total == point) {
+					println("You made your point. You win.");
+					break;
+				} else if(total == 7) {
+					println("That a 7. You lose.");
+					break;
+				}
+			}
 		}
 	}
-	private void raiseToRealPower(double n, int k) {
-		for(int i = 0; i <= k; i++) {
-			println(Math.pow(n, i));
-		}
+	
+	private int rollTwoDice() {
+		int d1 = rgen.nextInt(1, 6);
+		int d2 = rgen.nextInt(1, 6);
+		int total = d1 + d2;
+		println("Rolled dice: " + d1 + " " + d2 + " = " + total);
+		return total;
 	}
+	
+	private RandomGenerator rgen = new RandomGenerator();
 }
 
