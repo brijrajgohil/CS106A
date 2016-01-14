@@ -11,25 +11,21 @@ import acm.util.*;
 
 public class BlankClass extends ConsoleProgram {
 	public void run() {
-	int cardNumber = rgen.nextInt(1, 52);
-	String suit = giveSuit(cardNumber);
-	String rank = giveRank(cardNumber);
-	println(rank + " of " + suit);
-	}
-	
-	private String giveSuit(int cardNumber) {
-		if(cardNumber <= 13) return "Clubs";
-		else if(cardNumber >= 14 && cardNumber <= 26) return "Diamonds";
-		else if(cardNumber >= 27 && cardNumber <= 39) return "Hearts";
-		else return "Spades";
-	}
-	
-	private String giveRank(int cardNumber) {
-			if(cardNumber == 1) return "Ace";
-			else if(cardNumber >= 2 && cardNumber <= 10) return (""+ cardNumber);
-			else if(cardNumber == 11) return "Jack";
-			else if(cardNumber == 12) return "Queen";
-			else return "King";
+		int heads = 0;
+		int count = 0;
+		//rgen.setSeed(2);
+		while(heads != 3) {
+			if(rgen.nextBoolean()) {
+				println("Heads");
+				heads++;
+				count++;
+			}else {
+				println("Tails");
+				heads = 0;
+				count++;
+			}
+		}
+		println("It took " + count + " flips to get 3 consecutive heads.");
 	}
 	
 	private RandomGenerator rgen = new RandomGenerator();
