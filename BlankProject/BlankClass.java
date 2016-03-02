@@ -6,28 +6,24 @@
  * Then you can extend GraphicsProgram, ConsoleProgram, or DialogProgram as you like.
  */
 
+import acm.graphics.GRect;
 import acm.program.*;
 import acm.util.*;
 
-public class BlankClass extends ConsoleProgram {
+public class BlankClass extends GraphicsProgram {
 	public void run() {
-		int heads = 0;
-		int count = 0;
-		//rgen.setSeed(2);
-		while(heads != 3) {
-			if(rgen.nextBoolean()) {
-				println("Heads");
-				heads++;
-				count++;
-			}else {
-				println("Tails");
-				heads = 0;
-				count++;
+		double sqSize = (double) getHeight() / N_ROWS;
+		for(int i = 0; i < N_ROWS; i++) {
+			for(int j = 0; j < N_COLUMNS; j++) {
+				double x = j * sqSize;
+				double y = i * sqSize;
+				GRect sq = new GRect(x, y, sqSize, sqSize);
+				sq.setFilled((i+j)%2 != 0);
+				add(sq);
 			}
 		}
-		println("It took " + count + " flips to get 3 consecutive heads.");
 	}
-	
-	private RandomGenerator rgen = new RandomGenerator();
+	public static final int N_ROWS = 10;
+	public static final int N_COLUMNS = 10;
 }
 
