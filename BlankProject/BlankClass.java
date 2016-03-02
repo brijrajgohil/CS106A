@@ -9,21 +9,23 @@
 import acm.graphics.GRect;
 import acm.program.*;
 import acm.util.*;
+import java.awt.*;
 
 public class BlankClass extends GraphicsProgram {
 	public void run() {
-		double sqSize = (double) getHeight() / N_ROWS;
-		for(int i = 0; i < N_ROWS; i++) {
-			for(int j = 0; j < N_COLUMNS; j++) {
-				double x = j * sqSize;
-				double y = i * sqSize;
-				GRect sq = new GRect(x, y, sqSize, sqSize);
-				sq.setFilled((i+j)%2 != 0);
-				add(sq);
-			}
-		}
+		GRect square = new GRect(0, 0, SQSIZE, SQSIZE);
+		square.setFilled(true);
+		square.setFillColor(Color.RED);
+		add(square);
+		double dx = (getWidth() - SQSIZE) / NSTEPS;
+		double dy = (getHeight() - SQSIZE) / NSTEPS;
+		for(int i = 0; i < NSTEPS; i++) {
+			square.move(dx, dy);
+			pause(PAUSE_TIME);
+		}	
 	}
-	public static final int N_ROWS = 10;
-	public static final int N_COLUMNS = 10;
+	public static final double NSTEPS = 10.0;
+	public static final double SQSIZE = 100;
+	public static final double PAUSE_TIME = 1000;
 }
 
