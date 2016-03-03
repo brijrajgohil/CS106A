@@ -18,7 +18,7 @@ public class BlankClass extends GraphicsProgram {
 		square.setFillColor(Color.RED);
 		add(square);
 		double dx = (getWidth() - SQSIZE) / NSTEPS;
-		double dy = (getHeight() - SQSIZE) / NSTEPS;
+		double dy = 0;
 		for(int i = 0; i < NSTEPS; i++) {
 			square.move(dx, dy);
 			pause(PAUSE_TIME);
