@@ -9,24 +9,15 @@
 import acm.program.*;
 import acm.util.*;
 
-
 public class BlankClass extends ConsoleProgram {
 	
-	private static final int NDARTS = 10000;
-	
+	private static final int NUM_SIDES = 6;
 	public void run() {
-		int inside = 0;
-		for(int i = 0; i < NDARTS; i++) {
-			double x = rgen.nextDouble(-1.0, +1.0);
-			double y = rgen.nextDouble(-1.0, +1.0);
-			
-			if(((x * x) + (y * y)) < 1.0) {
-				inside++;
-			}
+		int numRolls = readInt("Enter num of rolls ");
+		for(int i = 0; i < numRolls; i++) {
+			int roll = rgen.nextInt(1, NUM_SIDES);
+			println(roll);
 		}
-		double pi = (4.0 * inside) / NDARTS;
-		println("Pi is approx " + pi);
 	}
-	private RandomGenerator rgen = RandomGenerator.getInstance();
-	
+	private RandomGenerator rgen = new RandomGenerator();
 }
