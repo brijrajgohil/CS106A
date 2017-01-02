@@ -6,18 +6,23 @@
  * Then you can extend GraphicsProgram, ConsoleProgram, or DialogProgram as you like.
  */
 
+import acm.graphics.*;
 import acm.program.*;
-import acm.util.*;
 
-public class BlankClass extends ConsoleProgram {
+public class BlankClass extends GraphicsProgram {
 	
-	private static final int NUM_SIDES = 6;
+	private static final int NROWS = 8;
+	private static final int NCOLUMNS = 8;
 	public void run() {
-		int numRolls = readInt("Enter num of rolls ");
-		for(int i = 0; i < numRolls; i++) {
-			int roll = rgen.nextInt(1, NUM_SIDES);
-			println(roll);
+		int sqSize = getHeight() / NROWS;
+		for(int i = 0; i < NROWS; i++) {
+			for(int j = 0; j < NCOLUMNS; j++) {
+				int x = j * sqSize;
+				int y = i * sqSize;
+				GRect sq = new GRect(x, y, sqSize, sqSize);
+				sq.setFilled(((i+j) % 2) != 0);
+				add(sq);
+			}
 		}
 	}
-	private RandomGenerator rgen = new RandomGenerator();
 }
