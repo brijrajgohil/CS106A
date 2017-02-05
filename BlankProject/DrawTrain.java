@@ -43,7 +43,9 @@ public class DrawTrain extends GraphicsProgram {
 		add(new GRect(xRight, yDoor, DOOR_WIDTH, DOOR_HEIGHT));
 	}
 	
-	private void drawEngine()
+	private void drawEngine(double x, double y) {
+		
+	}
 	
 	private static final double CAR_WIDTH = 75;
 	private static final double CAR_HEIGHT = 36;
