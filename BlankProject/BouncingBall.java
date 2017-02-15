@@ -23,7 +23,7 @@ public class BouncingBall extends GraphicsProgram{
 	/* Amount of y velocity reduced when it bounces */
 	private static final double BOUNCE_REDUCE = 0.9;
 	
-	/* Starting velocites */
+	/* Starting velocities */
 	private double xVel = X_VEL;
 	private double yVel = 0.0;
 	
@@ -62,12 +62,7 @@ public class BouncingBall extends GraphicsProgram{
 			double diff = ball.getY() - (getHeight() - DIAM_BALL);
 			ball.move(0,  -2 * diff);
 		}
-	}
-	
-	
-	
-	
-	
+	}	
 }
 
 

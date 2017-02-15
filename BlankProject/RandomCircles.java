@@ -1,6 +1,5 @@
 import acm.graphics.*;
 import acm.program.*;
-import java.awt.*;
 import acm.util.*;
 
 public class RandomCircles extends GraphicsProgram {

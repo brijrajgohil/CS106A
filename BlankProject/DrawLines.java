@@ -1,6 +1,5 @@
 import acm.program.*;
 import acm.graphics.*;
-import java.awt.*;
 import java.awt.event.MouseEvent;
 
 public class DrawLines extends GraphicsProgram{
