@@ -11,18 +11,14 @@ import acm.program.*;
 
 public class BlankClass extends GraphicsProgram {
 	
-	private static final int NROWS = 8;
-	private static final int NCOLUMNS = 8;
 	public void run() {
-		int sqSize = getHeight() / NROWS;
-		for(int i = 0; i < NROWS; i++) {
-			for(int j = 0; j < NCOLUMNS; j++) {
-				int x = j * sqSize;
-				int y = i * sqSize;
-				GRect sq = new GRect(x, y, sqSize, sqSize);
-				sq.setFilled(((i+j) % 2) != 0);
-				add(sq);
-			}
-		}
+		double width = getWidth() / 2;
+		double height = getHeight() / 2;
+		GPolygon diamond = new GPolygon();
+		diamond.addVertex(-width / 2, 0);
+		diamond.addVertex(0, -height / 2);
+		diamond.addVertex(width / 2, 0);
+		diamond.addVertex(0, height / 2);
+		add(diamond, width, height);
 	}
 }
