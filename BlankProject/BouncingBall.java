@@ -4,7 +4,7 @@ import acm.graphics.*;
 public class BouncingBall extends GraphicsProgram{
 	
 	//Size of the diameter of the ball
-	private static final int DIAM_BALL = 30;
+	private static final int DIAM_BALL = 60;
 	
 	/* Amount Y velocity is increased each cycle as a
 	 *  a result of gravity */
@@ -26,6 +26,7 @@ public class BouncingBall extends GraphicsProgram{
 	/* Starting velocities */
 	private double xVel = X_VEL;
 	private double yVel = 0.0;
+	private int i = 0;
 	
 	/* private instance variable */
 	private GOval ball;
@@ -33,6 +34,8 @@ public class BouncingBall extends GraphicsProgram{
 	public void run() {
 		setUp();
 		waitForClick();
+		System.out.println("Height = " + getHeight());
+		System.out.println("Width = " + getWidth());
 		
 		//Simulation ends when the ball exceeds the width of the screen
 		while(ball.getX() < getWidth()) {
@@ -51,6 +54,7 @@ public class BouncingBall extends GraphicsProgram{
 	
 	/* Update and move ball */
 	private void moveBall() {
+		i++;
 		yVel += GRAVITY;
 		ball.move(xVel, yVel);
 	}
@@ -58,8 +62,14 @@ public class BouncingBall extends GraphicsProgram{
 	/* Determine if collision with floor, update velocites, location */
 	private void checkForCollision() {
 		if(ball.getY() > getHeight() - DIAM_BALL) {
+			System.out.println("i = " + i);
+			i = 0;
+			System.out.println("yVel(Before) = " + yVel);
 			yVel = -yVel * BOUNCE_REDUCE;
+			System.out.println("yVel(After) = " + yVel);
 			double diff = ball.getY() - (getHeight() - DIAM_BALL);
+			System.out.println("ball Y = " + ball.getY());
+			System.out.println("diff = " + diff);
 			ball.move(0,  -2 * diff);
 		}
 	}	
