@@ -1,7 +1,6 @@
 import acm.program.*;
 import acm.graphics.*;
 
-import java.awt.*;
 import java.awt.event.MouseEvent;
 import acm.util.*;
 
