@@ -4,7 +4,7 @@ import acm.util.*;
 import java.awt.*;
 import java.awt.event.*;
 public class MemoeyExample3 extends GraphicsProgram {
-	GRect paddle = new GRect(getWidth(). getHeight());
+	GRect paddle = new GRect(getWidth(), getHeight());
 	public void run() {
 		paddle.setColor(Color.BLUE);
 		add(paddle, 0, 0);
