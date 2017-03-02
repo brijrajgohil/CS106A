@@ -3,7 +3,5 @@
  * */
 import acm.program.*;
 public class BlankClass extends ConsoleProgram {
-	public void run() {
-		
-	}
+	
 }
