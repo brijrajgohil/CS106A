@@ -66,23 +66,46 @@ public class Breakout extends GraphicsProgram {
 /** Paddle Variable*/
 	private GRect paddle;
 
+/** Ball variable */
+	private GOval ball;
+
+/** Velocities */
+	private double vx, vy;
+
+/** Delay */
+	private static final int DELAY = 20;
+
+/** For generating random numbers */
+	private RandomGenerator rgen = new RandomGenerator();
+	
+/** Brick */
+	private GRect brick;
+	
 /* Method: run() */
 /** Runs the Breakout program. */
 	public void run() {
 		setUp();
 		addMouseListeners();
+		waitForClick();
 		play();
 	}
 	
 	private void setUp() {
 		addBricks();
 		addPaddle();
+		addBall();
 	}
 	
+
+	private void play() {
+		moveBall();
+	}
+	
+	/* Setup functions */
 	private void addBricks() {
 		for(int i = 0; i < NBRICK_ROWS; i++) {
 			for(int j = 0; j < NBRICKS_PER_ROW; j++) {
-				GRect brick = new GRect((BRICK_SEP + BRICK_WIDTH) * j, 
+				brick = new GRect((BRICK_SEP + BRICK_WIDTH) * j, 
 							BRICK_Y_OFFSET + (BRICK_SEP + BRICK_HEIGHT) * i, BRICK_WIDTH, BRICK_HEIGHT);
 				brick.setFilled(true);
 				switch(i) {
@@ -119,6 +142,11 @@ public class Breakout extends GraphicsProgram {
 		add(paddle);
 	}
 	
+	private void addBall() {
+		ball = new GOval(WIDTH / 2 - BALL_RADIUS, HEIGHT / 2 - BALL_RADIUS, BALL_RADIUS * 2, BALL_RADIUS * 2);
+		ball.setFilled(true);
+		add(ball);
+	}
 	public void mouseMoved(MouseEvent e) {
 		if(e.getX() >= 0 && e.getX() < (WIDTH - PADDLE_WIDTH)) {
 			paddle.setLocation(e.getX(), HEIGHT - PADDLE_Y_OFFSET);
@@ -127,7 +155,51 @@ public class Breakout extends GraphicsProgram {
 		}
   	}
 	
-	private void play() {
+	/* Game play methods */
+	private void moveBall() {
+		vx = rgen.nextDouble(1.0, 3.0);
+		if(rgen.nextBoolean(0.5)) vx = -vx;
+		vy = 3.0;
 		
+		while(true) {
+			ball.move(vx, vy);
+			pause(DELAY);
+			checkWalls();
+			GObject collider = getCollidingObject();
+			if(collider == paddle) {
+				 vy = -vy;
+			} else if(collider != null){
+				remove(collider);
+				vy = - vy;
+			}
+		}
 	}
+	
+	private void checkWalls() {
+		if(ball.getX() <= 0) {
+			vx = -vx;
+		}
+		else if((ball.getX() + 2*BALL_RADIUS) >= WIDTH) {
+			vx = -vx;
+		} else if(ball.getY() <= 0) {
+			vy = -vy;
+		} else if((ball.getY() + 2 * BALL_RADIUS) >= HEIGHT) {
+			vy = -vy;
+		}
+	}
+	
+	private GObject getCollidingObject() {
+		if(getElementAt(ball.getX(), ball.getY()) != null) {
+			return getElementAt(ball.getX(), ball.getY()); 
+		} else if(getElementAt(ball.getX() + (2 * BALL_RADIUS), ball.getY()) != null) {
+			return getElementAt(ball.getX() + (2 * BALL_RADIUS), ball.getY());
+		} else if(getElementAt(ball.getX(), ball.getY()  + (2 * BALL_RADIUS)) != null) {
+			return getElementAt(ball.getX(), ball.getY()  + (2 * BALL_RADIUS));
+		} else if(getElementAt(ball.getX() + (2 * BALL_RADIUS), ball.getY()  + (2 * BALL_RADIUS)) != null) {
+			return getElementAt(ball.getX() + (2 * BALL_RADIUS), ball.getY()  + (2 * BALL_RADIUS));
+		}	
+		return null;
+	}
+	
+	
 }

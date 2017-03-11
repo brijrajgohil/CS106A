@@ -27,6 +27,7 @@ public class BouncingBall extends GraphicsProgram{
 	private double xVel = X_VEL;
 	private double yVel = 0.0;
 	
+	
 	/* private instance variable */
 	private GOval ball;
 	
