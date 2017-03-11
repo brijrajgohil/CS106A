@@ -62,11 +62,72 @@ public class Breakout extends GraphicsProgram {
 
 /** Number of turns */
 	private static final int NTURNS = 3;
+	
+/** Paddle Variable*/
+	private GRect paddle;
 
 /* Method: run() */
 /** Runs the Breakout program. */
 	public void run() {
-		/* You fill this in, along with any subsidiary methods */
+		setUp();
+		addMouseListeners();
+		play();
 	}
-
+	
+	private void setUp() {
+		addBricks();
+		addPaddle();
+	}
+	
+	private void addBricks() {
+		for(int i = 0; i < NBRICK_ROWS; i++) {
+			for(int j = 0; j < NBRICKS_PER_ROW; j++) {
+				GRect brick = new GRect((BRICK_SEP + BRICK_WIDTH) * j, 
+							BRICK_Y_OFFSET + (BRICK_SEP + BRICK_HEIGHT) * i, BRICK_WIDTH, BRICK_HEIGHT);
+				brick.setFilled(true);
+				switch(i) {
+				case 0:
+				case 1:
+					brick.setFillColor(Color.RED);
+					break;
+				case 2:
+				case 3:
+					brick.setFillColor(Color.ORANGE);
+					break;
+				case 4:
+				case 5:
+					brick.setFillColor(Color.YELLOW);
+					break;
+				case 6:
+				case 7:
+					brick.setFillColor(Color.GREEN);
+					break;
+				case 8:
+				case 9:
+					brick.setFillColor(Color.CYAN);
+					break;
+				default: break;
+				}
+				add(brick);
+			}
+		}
+	}
+	
+	private void addPaddle() {
+		paddle = new GRect((WIDTH-PADDLE_WIDTH) / 2, HEIGHT - PADDLE_Y_OFFSET, PADDLE_WIDTH, PADDLE_HEIGHT);
+		paddle.setFilled(true);
+		add(paddle);
+	}
+	
+	public void mouseMoved(MouseEvent e) {
+		if(e.getX() >= 0 && e.getX() < (WIDTH - PADDLE_WIDTH)) {
+			paddle.setLocation(e.getX(), HEIGHT - PADDLE_Y_OFFSET);
+		} else if(e.getX() > WIDTH - PADDLE_WIDTH) {
+			paddle.setLocation(WIDTH - PADDLE_WIDTH, HEIGHT - PADDLE_Y_OFFSET);
+		}
+  	}
+	
+	private void play() {
+		
+	}
 }
