@@ -200,6 +200,4 @@ public class Breakout extends GraphicsProgram {
 		}	
 		return null;
 	}
-	
-	
 }
