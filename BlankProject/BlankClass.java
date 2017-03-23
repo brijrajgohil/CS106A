@@ -2,43 +2,32 @@
  * Usually empty
  * */
 import acm.program.*;
-import acm.graphics.*;
-import java.awt.*;
+import java.util.*;
+
 public class BlankClass extends ConsoleProgram {
+	
 	public void run() {
-		println("This program counts letter frequencies. ");
-		println("Enter a blank line to indicate the end of the text. ");
-		initFrequencyTable();
+		setFont("Courier New-bold-24");
+		ArrayList<Integer> intList = new ArrayList<Integer>();
+		readList(intList);
+		printArrayList(intList);
+		readList(intList);
+		printArrayList(intList);
+	}
+	
+	private void readList(ArrayList list) {
 		while(true) {
-			String line = readLine();
-			if(line.length() == 0) break;
-			countLetterFrequencies(line);
-		}
-		printFrequencyTable();
-	}
-	private void initFrequencyTable() {
-		frequencyTable = new int[26];
-		for(int i = 0; i < 26; i++) {
-			frequencyTable[i] = 0;
+			int value = readInt("Next number: ");
+			if(value == -1) break;
+			list.add(value);
 		}
 	}
 	
-	private void countLetterFrequencies(String line) {
-		for(int i = 0; i < line.length(); i++) {
-			char ch = line.charAt(i);
-			if(Character.isLetter(ch)) {
-				int index = Character.toUpperCase(ch) - 'A';
-				frequencyTable[index]++;
-			}
+	private void printArrayList(ArrayList list) {
+		println("List contains " + list.size() + " elements.");
+		for(int i = 0; i < list.size(); i++) {
+			println(list.get(i));
 		}
 	}
 	
-	private void printFrequencyTable() {
-		for(char ch = 'A'; ch <= 'Z'; ch++) {
-			int index = ch - 'A';
-			println(ch + ": " + frequencyTable[index]);
-		}
-	}
-	
-	private int[] frequencyTable;
 }
