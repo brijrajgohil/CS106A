@@ -44,9 +44,13 @@ public class Hangman extends ConsoleProgram {
 	 ***********************************************************/
 	
 	/* An object that can produce pseudo random numbers */
-	private RandomGenerator rg = new RandomGenerator();
+	private RandomGenerator rgen = new RandomGenerator();
 	
 	private GCanvas canvas = new GCanvas();
+	
+	private String secretWord;
+	private String guessHiddenWord;
+	private int guessCtr = N_GUESSES;
 	
 	/***********************************************************
 	 *                    Methods                              *
@@ -54,8 +58,67 @@ public class Hangman extends ConsoleProgram {
 	
 	public void run() {
 		// shall we?
+		setUpGame();
+		playGame();
 	}
 	
+	private void setUpGame() {
+		println("Welcome to Hangman!");
+		secretWord = getRandomWord();
+		guessHiddenWord = wordFirstUpdate();
+		guessCtrUpdate();
+	}
+	
+	private void playGame() {
+		while(true) {
+			String guess = readLine("Your guess: ");
+			guess = guess.toUpperCase();
+			while(!validGuess(guess)) {
+				guess = readLine("Your guess: ");
+				guess.toUpperCase();
+			}
+			checkLetter(guess);
+		}
+	}
+	
+	private boolean validGuess(String guess) {
+		if(guess.length() > 1) {
+			return false;
+		} else if(Character.isDigit(guess.charAt(0))) {
+			return false;
+		}
+		return true;
+	}
+	
+	private void checkLetter(String guess) {
+		if(secretWord.indexOf(guess.charAt(0)) == -1) {
+			guessCtr--;
+			println("There are no " + guess + "'s in the word.");
+		} else {
+			println("That guess is correct.");
+			for(int i = 0; i < secretWord.length(); i++) {
+				if(secretWord.charAt(i) == guess.charAt(0) && i != 0) {
+					guessHiddenWord = guessHiddenWord.substring(0, i) + guess + guessHiddenWord.substring(i+1); 
+				} else if(secretWord.charAt(i) == guess.charAt(0) && i == 0) {
+					guessHiddenWord = guess + guessHiddenWord.substring(i + 1);
+				}
+			}
+		}
+	}
+	
+	
+	private String wordFirstUpdate() {
+		String result = "";
+		for(int i = 0; i < secretWord.length(); i++) {
+			result = result + "-";
+		}
+		println("The word now looks like this: " + result);
+		return result;
+	}
+	
+	private void guessCtrUpdate() {
+		println("You have " + guessCtr + " guesses left.");
+	}
 	/**
 	 * Method: Get Random Word
 	 * -------------------------
@@ -63,7 +126,7 @@ public class Hangman extends ConsoleProgram {
 	 * selects from among 10 choices.
 	 */
 	private String getRandomWord() {
-		int index = rg.nextInt(10);
+		int index = rgen.nextInt(10);
 		if(index == 0) return "BUOY";
 		if(index == 1) return "COMPUTER";
 		if(index == 2) return "CONNOISSEUR";
