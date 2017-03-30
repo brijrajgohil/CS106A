@@ -22,22 +22,40 @@ public class Hangman extends ConsoleProgram {
 	
 	/* The number of guesses in one game of Hangman */
 	private static final int N_GUESSES = 7;
-	/* The width and the height to make the karel image */
+	/* The width and the height to make the karel image 
 	private static final int KAREL_SIZE = 150;
-	/* The y-location to display karel */
+	/* The y-location to display karel
 	private static final int KAREL_Y = 230;
-	/* The width and the height to make the parachute image */
+	/* The width and the height to make the parachute image 
 	private static final int PARACHUTE_WIDTH = 300;
 	private static final int PARACHUTE_HEIGHT = 130;
-	/* The y-location to display the parachute */
+	/* The y-location to display the parachute 
 	private static final int PARACHUTE_Y = 50;
-	/* The y-location to display the partially guessed string */
+	/* The y-location to display the partially guessed string 
 	private static final int PARTIALLY_GUESSED_Y = 430;
-	/* The y-location to display the incorrectly guessed letters */
+	/* The y-location to display the incorrectly guessed letters 
 	private static final int INCORRECT_GUESSES_Y = 460;
-	/* The fonts of both labels */
+	/* The fonts of both labels 
 	private static final String PARTIALLY_GUESSED_FONT = "Courier-36";
-	private static final String INCORRECT_GUESSES_FONT = "Courier-26";
+	private static final String INCORRECT_GUESSES_FONT = "Courier-26"; */
+	
+/*	private static final int SCAFFOLD_HEIGHT = 360;
+ 	private static final int BEAM_LENGTH = 144;
+	private static final int ROPE_LENGTH = 18;
+	private static final int HEAD_RADIUS = 36;
+	private static final int BODY_LENGTH = 144;
+	private static final int ARM_OFFSET_FROM_HEAD = 28;
+	private static final int UPPER_ARM_LENGTH = 72;
+	private static final int LOWER_ARM_LENGTH = 44;
+	private static final int HIP_WIDTH = 36;
+	private static final int LEG_LENGTH = 108;
+	private static final int FOOT_LENGTH = 28;
+	
+	private static final int WIDTH = 400;
+	private static final int HEIGHT = 400;
+	
+	private double startX = WIDTH / 2 - BEAM_LENGTH;
+	private double startY = HEIGHT / 2 - SCAFFOLD_HEIGHT / 2; */
 	
 	/***********************************************************
 	 *              Instance Variables                         *
@@ -46,11 +64,13 @@ public class Hangman extends ConsoleProgram {
 	/* An object that can produce pseudo random numbers */
 	private RandomGenerator rgen = new RandomGenerator();
 	
-	private GCanvas canvas = new GCanvas();
+	//private GCanvas canvas = new GCanvas();
 	
 	private String secretWord;
 	private String guessHiddenWord;
 	private int guessCtr = N_GUESSES;
+	
+	private ArrayList<String> hangmanWordList = new ArrayList<String>();
 	
 	/***********************************************************
 	 *                    Methods                              *
@@ -78,7 +98,31 @@ public class Hangman extends ConsoleProgram {
 				guess.toUpperCase();
 			}
 			checkLetter(guess);
+			if(checkWinLoss() == false) {
+				wordUpdate();
+				guessCtrUpdate();
+			} else {
+				break;
+			}
 		}
+	}
+	
+	private boolean checkWinLoss() {
+		if(guessCtr == 0) {
+			println("You completely hung."); 
+			println("The secret word was: " + secretWord);
+			println("You lose");
+			return true;
+		} else if(guessHiddenWord.equals(secretWord)) {
+			println("You guessed the word: " + secretWord);
+			println("You win.");
+			return true;
+		}
+		return false;
+	}
+	
+	private void wordUpdate() {
+		println("The word now looks like this: " + guessHiddenWord);
 	}
 	
 	private boolean validGuess(String guess) {
@@ -126,18 +170,21 @@ public class Hangman extends ConsoleProgram {
 	 * selects from among 10 choices.
 	 */
 	private String getRandomWord() {
-		int index = rgen.nextInt(10);
-		if(index == 0) return "BUOY";
-		if(index == 1) return "COMPUTER";
-		if(index == 2) return "CONNOISSEUR";
-		if(index == 3) return "DEHYDRATE";
-		if(index == 4) return "FUZZY";
-		if(index == 5) return "HUBBUB";
-		if(index == 6) return "KEYHOLE";
-		if(index == 7) return "QUAGMIRE";
-		if(index == 8) return "SLITHER";
-		if(index == 9) return "ZIRCON";
-		throw new ErrorException("getWord: Illegal index");
+		
+		try {
+			BufferedReader bReader = new BufferedReader(new FileReader("HangmanLexicon.txt"));
+			while(true) {
+				String line = bReader.readLine();
+				if(line == null) {
+					break;
+				}
+				hangmanWordList.add(line);
+			}
+			bReader.close();
+		} catch(IOException ex) {
+			throw new ErrorException(ex);
+		}
+		int index = rgen.nextInt(hangmanWordList.size());
+		return hangmanWordList.get(index);
 	}
-
 }
