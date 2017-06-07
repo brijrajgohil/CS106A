@@ -9292,7 +9292,7 @@ Meriden, CT
 Middletown, CT
 41.553672
 -72.663206
-Milford (balance), CT
+Milford, CT
 41.218697
 -73.059550
 Moodus, CT
@@ -12469,7 +12469,7 @@ Arnoldsville, GA
 Ashburn, GA
 31.704378
 -83.653786
-Athens-Clarke County (balance), GA
+Athens-Clarke County, GA
 33.955464
 -83.383245
 Atlanta, GA
@@ -12481,7 +12481,7 @@ Attapulgus, GA
 Auburn, GA
 34.016692
 -83.831869
-Augusta-Richmond County (balance), GA
+Augusta-Richmond County, GA
 33.433271
 -82.022048
 Austell, GA
@@ -12754,7 +12754,7 @@ Collins, GA
 Colquitt, GA
 31.173090
 -84.728512
-Columbus (balance), GA
+Columbus, GA
 32.489608
 -84.940422
 Comer, GA
@@ -19849,7 +19849,7 @@ Huntington, IN
 Hymera, IN
 39.185497
 -87.299978
-Indianapolis (balance), IN
+Indianapolis, IN
 39.790942
 -86.147685
 Indian Heights, IN
@@ -38935,7 +38935,7 @@ Browning, MT
 Busby, MT
 45.527535
 -106.973707
-Butte-Silver Bow (balance), MT
+Butte-Silver Bow, MT
 45.960929
 -112.562536
 Camp Three, MT
@@ -63430,7 +63430,7 @@ Munford, TN
 Murfreesboro, TN
 35.857700
 -86.394725
-Nashville-Davidson (balance), TN
+Nashville-Davidson, TN
 36.154838
 -86.762141
 Newbern, TN
